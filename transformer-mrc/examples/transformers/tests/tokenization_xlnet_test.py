@@ -23,7 +23,7 @@ from .tokenization_tests_commons import CommonTestCases
 from .utils import slow
 
 SAMPLE_VOCAB = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                    'fixtures/test_sentencepiece.model')
+                            'fixtures/test_sentencepiece.model')
 
 class XLNetTokenizationTest(CommonTestCases.CommonTokenizerTester):
 

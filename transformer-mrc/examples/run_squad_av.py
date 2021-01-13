@@ -16,8 +16,8 @@
 """ Finetuning the library models for question-answering on SQuAD (DistilBERT, Bert, XLM, XLNet)."""
 
 from __future__ import absolute_import, division, print_function
-from ..transformers.data.processors.squad import SquadV1Processor, SquadV2Processor, SquadResult
-from ..transformers.data.metrics.squad_metrics import compute_predictions_logits, compute_predictions_log_probs, squad_evaluate
+from transformers.data.processors.squad import SquadV1Processor, SquadV2Processor, SquadResult
+from transformers.data.metrics.squad_metrics import compute_predictions_logits, compute_predictions_log_probs
 from evaluate_official2 import eval_squad
 import argparse
 import logging
@@ -27,7 +27,7 @@ import glob
 import timeit
 import numpy as np
 import torch
-from torch.utils.data import (DataLoader, RandomSampler, SequentialSampler, TensorDataset)
+from torch.utils.data import (DataLoader, RandomSampler, SequentialSampler)
 from torch.utils.data.distributed import DistributedSampler
 import pickle
 try:
@@ -37,10 +37,9 @@ except:
 
 from tqdm import tqdm, trange
 
-from ..transformers import (WEIGHTS_NAME, BertConfig,
+from transformers import (WEIGHTS_NAME, BertConfig,
                                   BertForQuestionAnsweringAVPool, BertTokenizer,
-                                  XLMConfig, XLMForQuestionAnswering,
-                                  XLMTokenizer, XLNetConfig,
+                          XLNetConfig,
                                   XLNetForQuestionAnswering,
                                   XLNetTokenizer,
                                   DistilBertConfig, DistilBertForQuestionAnswering, DistilBertTokenizer,
