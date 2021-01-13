@@ -16,8 +16,8 @@
 """ Finetuning the library models for question-answering on SQuAD (DistilBERT, Bert, XLM, XLNet)."""
 
 from __future__ import absolute_import, division, print_function
-from transformers.data.processors.squad import SquadV1Processor, SquadV2Processor, SquadResult
-from transformers.data.metrics.squad_metrics import compute_predictions_logits, compute_predictions_log_probs, squad_evaluate
+from ..transformers.data.processors.squad import SquadV1Processor, SquadV2Processor, SquadResult
+from ..transformers.data.metrics.squad_metrics import compute_predictions_logits, compute_predictions_log_probs, squad_evaluate
 from evaluate_official2 import eval_squad
 import argparse
 import logging
@@ -37,18 +37,18 @@ except:
 
 from tqdm import tqdm, trange
 
-from transformers import (WEIGHTS_NAME, BertConfig,
-                                  BertForQuestionAnswering, BertTokenizer,
+from ..transformers import (WEIGHTS_NAME, BertConfig,
+                                  BertForQuestionAnsweringAVPool, BertTokenizer,
                                   XLMConfig, XLMForQuestionAnswering,
                                   XLMTokenizer, XLNetConfig,
                                   XLNetForQuestionAnswering,
                                   XLNetTokenizer,
                                   DistilBertConfig, DistilBertForQuestionAnswering, DistilBertTokenizer,
-                                  AlbertConfig, AlbertForQuestionAnswering, AlbertTokenizer,
+                                  AlbertConfig, AlbertForQuestionAnsweringAVPool, AlbertTokenizer,
                                   XLMConfig, XLMForQuestionAnswering, XLMTokenizer,
                                   )
 
-from transformers import AdamW, get_linear_schedule_with_warmup, squad_convert_examples_to_features
+from ..transformers import AdamW, get_linear_schedule_with_warmup, squad_convert_examples_to_features
 
 logger = logging.getLogger(__name__)
 
@@ -56,11 +56,11 @@ ALL_MODELS = sum((tuple(conf.pretrained_config_archive_map.keys()) \
                   for conf in (BertConfig, XLNetConfig, XLMConfig)), ())
 
 MODEL_CLASSES = {
-    'bert': (BertConfig, BertForQuestionAnswering, BertTokenizer),
+    'bert': (BertConfig, BertForQuestionAnsweringAVPool, BertTokenizer),
     'xlnet': (XLNetConfig, XLNetForQuestionAnswering, XLNetTokenizer),
     'xlm': (XLMConfig, XLMForQuestionAnswering, XLMTokenizer),
     'distilbert': (DistilBertConfig, DistilBertForQuestionAnswering, DistilBertTokenizer),
-    'albert': (AlbertConfig, AlbertForQuestionAnswering, AlbertTokenizer),
+    'albert': (AlbertConfig, AlbertForQuestionAnsweringAVPool, AlbertTokenizer),
 }
 
 def set_seed(args):
