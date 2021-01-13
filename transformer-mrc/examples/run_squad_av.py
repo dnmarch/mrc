@@ -47,7 +47,7 @@ from transformers import (WEIGHTS_NAME, BertConfig,
                                   XLMConfig, XLMForQuestionAnswering, XLMTokenizer,
                                   )
 
-from ..transformers import AdamW, get_linear_schedule_with_warmup, squad_convert_examples_to_features
+from transformers import AdamW, get_linear_schedule_with_warmup, squad_convert_examples_to_features
 
 logger = logging.getLogger(__name__)
 
