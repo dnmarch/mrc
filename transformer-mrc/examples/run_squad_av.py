@@ -378,6 +378,9 @@ def load_and_cache_examples(args, tokenizer, evaluate=False, output_examples=Fal
             is_training=not evaluate,
             return_dataset='pt'
         )
+        print("#" * 20)
+        print("finish feature conversion")
+        print("#" * 20)
 
         if args.local_rank in [-1, 0]:
             logger.info("Saving features into cached file %s", cached_features_file)
